@@ -2,18 +2,54 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider     = "postgresql"
+  url          = env("DATABASE_URL")
   relationMode = "prisma"
 }
-
 
 generator client {
   provider = "prisma-client-js"
 }
 
-model Example {
-    id        String   @id @default(cuid())
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+model User {
+  id        String     @id @default(cuid())
+  createdAt DateTime   @default(now())
+  authorid  String 
+  name      String
+  user      UserTeam[]
+
+  @@index([authorid])
+
 }
+
+model Leagues {
+  id        String     @id @default(cuid())
+  createdAt DateTime   @default(now())
+  name      String     @unique
+  admin     String
+  user      UserTeam[]
+}
+
+model UserTeam {
+  id         String   @id @default(cuid())
+  created    DateTime @unique @default(now())
+  userrel    User     @relation(fields: [user], references: [id])
+  user       String
+  leaguesrel Leagues  @relation(fields: [leagues], references: [id])
+  leagues    String
+  teamrel    Team     @relation(fields: [team], references: [id])
+  team       String
+
+  @@index([user])
+  @@index([leagues])
+  @@index([team])
+}
+
+model Team {
+  id      String     @id @default(cuid())
+  sex     Boolean
+  weight  String
+  name    String
+  country String
+  user    UserTeam[]
+  }
