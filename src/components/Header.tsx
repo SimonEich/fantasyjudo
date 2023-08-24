@@ -8,13 +8,17 @@ export function Header (){
     console.log(user)
 
     return ( <div>
-        <div className="flex  container items-center">
-            <a href="#" className="text-sm  text-white-600 dark:text-white-500 hover:underline">
-              <div className="white">{!user.isSignedIn && <SignInButton />}</div>
-              <div>{!!user.isSignedIn && <div></div>}</div>
-              {<UserButton/>}
+       <nav className="bg-slate-200 dark:bg-gray-1200">
+    <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl px-8 py-4 bg-slate-200">
+            <span className="self-center text-2xl whitespace-nowrap dark:text-white">Fantasy Judo</span>
+                <div className="flex items-center">
+            <a href="#" className="text-sm  text-blue-600 dark:text-blue-500 hover:underline">
+              {!user.isSignedIn&&<SignInButton />}
+              {!!user.isSignedIn&&<UserButton/>}
               <SignIn path="/sign-in" routing="path" signUpUrl="/sign-up" />
               </a>
         </div>
+    </div>
+</nav>
     </div>)
 }
