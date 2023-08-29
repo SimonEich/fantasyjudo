@@ -1,14 +1,13 @@
-import { useUser } from "@clerk/nextjs";
+import { SignIn, SignInButton, SignOutButton, UserButton, useUser } from "@clerk/nextjs";
+import { ClerkProvider, SignUp } from "@clerk/nextjs";
 
 
 
 export function Welcome (){
     const user = useUser();
-    const { isLoaded: userLoaded, isSignedIn} = useUser();
-
     console.log(user)
 
     return ( <div>
-        {(!isSignedIn && <h1>Pick Your Team and Play Now!</h1>)}
+        <h1>home</h1>
     </div>)
 }
