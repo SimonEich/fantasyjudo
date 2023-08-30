@@ -44,7 +44,7 @@ export default function Home() {
         }
         </div>
         <div className="place-content-center">
-          <h1 className="flex text-teal-500 ml-12">@copyright-Fantasy Judo - Make the sport personal</h1>
+          <h1 className="flex text-teal-500 ml-12">©copyright-Fantasy Judo - Make the sport personal</h1>
         </div>
     </>
   );
