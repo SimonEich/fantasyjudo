@@ -7,10 +7,16 @@ import { SignInButton, SignOutButton, UserButton } from "@clerk/nextjs";
 export function Login (){
     const user = useUser();
     const { isLoaded: userLoaded, isSignedIn} = useUser();
+    const name = user.user?.username?.toUpperCase()
 
-    console.log(user)
+    console.log(name)
 
     return ( <div className="m-10">
+
+        <div className="flex place-content-center rounded-full my-6 mx-2">
+            <h1>Hello {name}</h1>
+        </div>
+
         <div className="flex place-content-center rounded-full p-4 bg-blue-600 hover:bg-sky-700 my-6 mx-2">
            <h1>Fantasy Judo Rules</h1>
         </div>

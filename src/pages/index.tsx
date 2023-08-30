@@ -22,7 +22,7 @@ export default function Home() {
   const session = useSession();
 
   
-  console.log(user);
+  console.log(user.user?.id);
   console.log(hello.data)
 
   return (
