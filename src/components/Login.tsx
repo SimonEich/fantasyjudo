@@ -8,6 +8,7 @@ export function Login (){
     const user = useUser();
     const { isLoaded: userLoaded, isSignedIn} = useUser();
     const name = user.user?.username?.toUpperCase()
+    const style = "flex place-content-center rounded-full p-5 bg-blue-500 hover:bg-sky-500 m-2"
 
     console.log(name)
 
@@ -21,15 +22,15 @@ export function Login (){
            <h1>Fantasy Judo Rules</h1>
         </div>
 
-        <div className="flex place-content-center rounded-full p-5 bg-blue-500 hover:bg-sky-500 m-2">
+        <div className={style}>
            <h1>My Team</h1>
         </div>
 
-        <div className="flex place-content-center rounded-full p-5 bg-blue-500 hover:bg-sky-500 m-2">
+        <div className={style}>
            <h1>Create or Join a League</h1>
         </div>
 
-        <div className="flex place-content-center rounded-full p-5 bg-blue-500 hover:bg-sky-500 m-2">
+        <div className={style}>
            <h1>View Leaderboard</h1>
         </div>
             

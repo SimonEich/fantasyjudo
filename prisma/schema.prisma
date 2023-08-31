@@ -16,7 +16,7 @@ model User {
   createdAt DateTime   @default(now())
   authorid  String 
   name      String
-  user      UserTeam[]
+  user      UserTeam[] 
 
   @@index([authorid])
 

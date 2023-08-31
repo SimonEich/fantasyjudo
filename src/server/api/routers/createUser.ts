@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { createTRPCRouter, privateProcedure, publicProcedure } from "~/server/api/trpc";
 
-export const createLeagueRouter = createTRPCRouter({
+export const createUserRouter = createTRPCRouter({
   hello: privateProcedure   
     .input(z.object({ text: z.string() }))
     .query(({ input }) => {
@@ -10,6 +10,6 @@ export const createLeagueRouter = createTRPCRouter({
       };
     }),
   getAll: publicProcedure.query(({ ctx }) => {
-    return ctx.prisma.leagues.findMany();
+    return ctx.prisma.user.findMany();
   }),
 });

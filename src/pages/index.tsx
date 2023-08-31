@@ -9,21 +9,23 @@ import { log } from "console";
 import { Header } from "~/components/Header";
 import { Welcome } from "~/components/Welcome";
 import { Login } from "~/components/Login";
+import { $schema } from ".eslintrc.cjs";
 
 
 
 const TABS = ["Home", "Leagues"]
 
 export default function Home() {
-  const hello = api.example.hello.useQuery({ text: "from tRPC" });
+const {data}= api.createLeague.getAll.useQuery();
+//const {datas} = api.createUser.getAll.useQuery();
+
+console.log(data)
 
   const user = useUser();
   const { isLoaded: userLoaded, isSignedIn} = useUser();
   const session = useSession();
 
   
-  console.log(user.user?.id);
-  console.log(hello.data)
 
   return (
     <>
@@ -33,6 +35,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
         <Header/>
+        <h1>{data?.map((Leagues)=>(<div>{Leagues.name}</div>))}</h1>
 
 
         <div className="place-content-center">
