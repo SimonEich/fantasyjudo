@@ -14,20 +14,19 @@ generator client {
 model User {
   id        String     @id @default(cuid())
   createdAt DateTime   @default(now())
-  authorid  String 
+  authorid  String
   name      String
-  user      UserTeam[] 
+  user      UserTeam[]
 
   @@index([authorid])
-
 }
 
 model Leagues {
-  id        String     @id @default(cuid())
-  createdAt DateTime   @default(now())
-  name      String     @unique
-  admin     String
-  user      UserTeam[]
+  id         String     @id @default(cuid())
+  createdAt  DateTime   @default(now())
+  leaguename String     @unique
+  admin      String
+  user       UserTeam[]
 }
 
 model UserTeam {
@@ -52,4 +51,4 @@ model Team {
   name    String
   country String
   user    UserTeam[]
-  }
+}

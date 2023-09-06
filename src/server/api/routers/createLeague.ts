@@ -2,7 +2,7 @@ import { z } from "zod";
 import { createTRPCRouter, privateProcedure, publicProcedure } from "~/server/api/trpc";
 
 export const createLeagueRouter = createTRPCRouter({
-  hello: privateProcedure   
+  hello: publicProcedure   
     .input(z.object({ text: z.string() }))
     .query(({ input }) => {
       return {

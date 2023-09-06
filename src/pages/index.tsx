@@ -4,28 +4,39 @@ import Link from "next/link";
 import { api } from "~/utils/api";
 import Image from "next/image";
 import { ClerkProvider, SignUp } from "@clerk/nextjs";
-import { Component } from "react";
+import { Component, useState } from "react";
 import { log } from "console";
 import { Header } from "~/components/Header";
 import { Welcome } from "~/components/Welcome";
 import { Login } from "~/components/Login";
 import { $schema } from ".eslintrc.cjs";
+import { createTRPCRouter } from "~/server/api/trpc";
+import Trpc from "./api/trpc/[trpc]";
+import { appRouter } from "~/server/api/root";
 
 
 
 const TABS = ["Home", "Leagues"]
 
 export default function Home() {
-const {data}= api.createLeague.getAll.useQuery();
-//const {datas} = api.createUser.getAll.useQuery();
 
-console.log(data)
+
+const {data}= api.createLeague.getAll.useQuery();
+const [input, setInput] = useState("");
+
+
 
   const user = useUser();
   const { isLoaded: userLoaded, isSignedIn} = useUser();
   const session = useSession();
 
+
   
+
+
+  function mutate(arg0: { content: string; }) {
+    throw new Error("Function not implemented.");
+  }
 
   return (
     <>
@@ -35,8 +46,27 @@ console.log(data)
         <link rel="icon" href="/favicon.ico" />
       </Head>
         <Header/>
-        <h1>{data?.map((Leagues)=>(<div>{Leagues.name}</div>))}</h1>
+        <h1>{data?.map((user)=>(<div>{user.name}</div>))}</h1>
 
+        
+
+        <input
+        placeholder="Type some emojis!"
+        className="grow bg-transparent outline-none"
+        type="text"
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            if (input !== "") {
+              mutate({ content: input });
+            }
+          }
+        }}
+        disabled={isPosting}
+      />
+      
 
         <div className="place-content-center">
         {!isSignedIn && <Welcome/>}
@@ -52,3 +82,7 @@ console.log(data)
     </>
   );
 }
+function refetchTopics() {
+  throw new Error("Function not implemented.");
+}
+
